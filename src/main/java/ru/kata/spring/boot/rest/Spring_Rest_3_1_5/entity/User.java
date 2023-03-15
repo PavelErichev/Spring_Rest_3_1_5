@@ -1,10 +1,15 @@
 package ru.kata.spring.boot.rest.Spring_Rest_3_1_5.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.boot.JaccPermissionDefinition;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.kata.spring.boot.rest.Spring_Rest_3_1_5.dto.UserDTO;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,7 +20,7 @@ public class User implements UserDetails {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "email")
     private String email;
@@ -37,25 +42,25 @@ public class User implements UserDetails {
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(String email, String password, String firstName, String lastName, Set<Role> roles, int age) {
-        this.email = email;
-        this.password = password;
+    public User(String firstName, String lastName, int age, String email, String password, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.roles = roles;
         this.age = age;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -95,12 +100,6 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public Set<String> getRoleName() {
-        return roles.stream()
-                .map(r -> r.getName().replace("ROLE_", ""))
-                .collect(Collectors.toSet());
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
@@ -109,9 +108,21 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    //вариант 2
+    public String getShortRole() {
+        return roles.toString().substring(1, roles.toString().length() - 1);
+    }
+
+    //варинат 1
+    /*public Set<String> getRoleName() {
+        return roles.stream()
+                .map(r -> r.getRole().replace("ROLE_", ""))
+                .collect(Collectors.toSet());
+    }*/
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
     }
 
     @Override
@@ -143,4 +154,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

@@ -2,13 +2,15 @@ package ru.kata.spring.boot.rest.Spring_Rest_3_1_5.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class LoginController {
+@RequestMapping("/user")
+public class UserViewController {
 
-    @GetMapping("/login")
-    public String login() {
-        return "/login";
+    @GetMapping
+    public String userInfo() {
+        return "user";
     }
 
 }
