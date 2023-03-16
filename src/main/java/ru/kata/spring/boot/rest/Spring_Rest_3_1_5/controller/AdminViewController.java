@@ -8,7 +8,7 @@ public class AdminViewController {
 
     @GetMapping("/admin")
     public String showAdminPage() {
-        return "admin1";
+        return "admin";
     }
 
 }

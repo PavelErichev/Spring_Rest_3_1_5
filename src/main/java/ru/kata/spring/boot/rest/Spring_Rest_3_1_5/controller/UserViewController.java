@@ -10,7 +10,7 @@ public class UserViewController {
 
     @GetMapping
     public String userInfo() {
-        return "user1";
+        return "user";
     }
 
 }

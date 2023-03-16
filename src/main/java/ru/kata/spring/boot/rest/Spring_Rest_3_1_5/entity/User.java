@@ -105,17 +105,9 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    //вариант 2
     public String getShortRole() {
         return roles.toString().substring(1, roles.toString().length() - 1);
     }
-
-    //варинат 1
-    /*public Set<String> getRoleName() {
-        return roles.stream()
-                .map(r -> r.getRole().replace("ROLE_", ""))
-                .collect(Collectors.toSet());
-    }*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
