@@ -40,7 +40,7 @@ public class AdminRestController {
 
     @PatchMapping("admin/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
-        userService.update(id,user);
+        userService.update(id, user);
         return ResponseEntity.ok(user);
     }
 

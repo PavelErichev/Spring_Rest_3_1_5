@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import ru.kata.spring.boot.rest.Spring_Rest_3_1_5.entity.User;
 import ru.kata.spring.boot.rest.Spring_Rest_3_1_5.repository.UserRepository;
 
-import java.util.Optional;
-
 @Service
 public class EmailBasedUserDetailService implements UserDetailsService {
 

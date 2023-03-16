@@ -1,11 +1,8 @@
 package ru.kata.spring.boot.rest.Spring_Rest_3_1_5.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.boot.JaccPermissionDefinition;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.kata.spring.boot.rest.Spring_Rest_3_1_5.dto.UserDTO;
 
 import javax.persistence.*;
 import java.util.Collection;
