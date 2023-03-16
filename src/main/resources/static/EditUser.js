@@ -32,7 +32,7 @@ function editUser() {
             })
         }).then(() => {
             $('#editFormCloseButton').click();
-            findAll();
+            tableOfAllUsers();
         });
     });
 }

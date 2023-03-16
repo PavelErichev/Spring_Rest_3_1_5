@@ -27,7 +27,7 @@ function addUser() {
             })
         }).then(() => {
             formNew.reset();
-            findAll();
+            tableOfAllUsers();
             $('#home-tab').click();
         });
     });

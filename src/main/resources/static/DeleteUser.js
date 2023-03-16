@@ -24,7 +24,7 @@ function deleteUser() {
             }
         }).then(() => {
             $('#deleteFormCloseButton').click();
-            findAll();
+            tableOfAllUsers();
         });
     });
 }

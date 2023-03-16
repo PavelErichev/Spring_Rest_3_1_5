@@ -1,6 +1,6 @@
-fillInPrincipal();
+showUserInfo();
 
-function fillInPrincipal() {
+function showUserInfo() {
     fetch("http://localhost:8080/user/userList")
         .then(res => res.json())
         .then(user => {

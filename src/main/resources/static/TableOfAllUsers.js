@@ -1,7 +1,7 @@
 const table = $('#usersTable');
-findAll();
+tableOfAllUsers();
 
-function findAll() {
+function tableOfAllUsers() {
     table.empty()
     fetch("http://localhost:8080/admin/list")
         .then(res => res.json())
